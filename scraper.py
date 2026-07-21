@@ -11,7 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 MAX_PAGES = 10  # 크롤링할 최대 페이지 수
 BASE_URL = "https://www.coupang.com/np/categories/115673?listSize=60&filterType=rocket&rating=0&isPriceRange=false&minPrice=&maxPrice=&component=&sorter=bestAsc&brand=&offerCondition=&filter=&fromComponent=N&channel=user&selectedPlpKeepFilter="  # 실제 타겟 카테고리 URL로 변경하세요.
 
-defsetup_driver():
+def setup_driver():
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
