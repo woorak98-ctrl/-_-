@@ -45,7 +45,7 @@ def main():
 
         # 1. 현재 페이지의 모든 상품 링크 수집
         # [수정됨] 1번째 상품의 이미지가 아니라, 리스트 전체의 링크(a 태그)를 가져오도록 수정
-        item_elements = driver.find_elements(By.CSS_SELECTOR, '#product-list > li > a')
+        item_elements = driver.find_elements(By.CSS_SELECTOR, '#productlist > li > a')
         item_urls = [elem.get_attribute('href') for elem in item_elements if elem.get_attribute('href')]
 
         print(f"{page}페이지에서 {len(item_urls)}개의 상품 링크를 발견했습니다.")
