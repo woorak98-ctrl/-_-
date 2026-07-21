@@ -10,8 +10,8 @@ from selenium.common.exceptions import NoSuchElementException
 # ==========================================
 # 사용자 설정 영역
 # ==========================================
-MAX_PAGES = 3  # 크롤링할 최대 페이지 수
-BASE_URL = "https://example.com/category?page="  # 실제 타겟 카테고리 URL로 변경하세요.
+MAX_PAGES = 10  # 크롤링할 최대 페이지 수
+BASE_URL = "https://www.coupang.com/np/categories/115673?listSize=60&filterType=rocket&rating=0&isPriceRange=false&minPrice=&maxPrice=&component=&sorter=bestAsc&brand=&offerCondition=&filter=&fromComponent=N&channel=user&selectedPlpKeepFilter="  # 실제 타겟 카테고리 URL로 변경하세요.
 
 def setup_driver():
     options = Options()
@@ -42,7 +42,7 @@ def main():
 
         # 1. 현재 페이지의 모든 상품 링크 수집
         # [수정 필요] 상품 클릭 링크에 해당하는 CSS 선택자를 넣으세요.
-        item_elements = driver.find_elements(By.CSS_SELECTOR, '.item-list > a.product-link')
+        item_elements = driver.find_elements(By.CSS_SELECTOR, '#product-list > li:nth-child(1) > a > figure > img')
         item_urls = [elem.get_attribute('href') for elem in item_elements if elem.get_attribute('href')]
 
         print(f"{page}페이지에서 {len(item_urls)}개의 상품을 발견했습니다.")
@@ -53,10 +53,10 @@ def main():
             time.sleep(1.5) # 랜딩페이지 로딩 대기
 
             # [수정 필요] 각 데이터에 맞는 CSS 선택자를 넣으세요.
-            product_name = get_text_safe(driver, '.product-title')
-            seller_name = get_text_safe(driver, '.seller-info .name')
-            contact = get_text_safe(driver, '.seller-info .phone')
-            email = get_text_safe(driver, '.seller-info .email')
+            product_name = get_text_safe(driver, 'body > div:nth-child(5) > div > div.twc-flex.twc-max-w-full > main > div.prod-atf.twc-block.md\:twc-flex.twc-relative > div.prod-atf-contents.twc-relative.twc-flex-1.twc-min-w-0 > div.product-buy-header.product-buy-header-v2 > div.twc-flex.twc-justify-between.twc-items-start > div:nth-child(1) > h1 > span')
+            seller_name = get_text_safe(driver, '#sdpEtc > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(2)')
+            contact = get_text_safe(driver, '#sdpEtc > div > div:nth-child(2) > div > table > tbody > tr:nth-child(4) > td:nth-child(2)')
+            email = get_text_safe(driver, '#sdpEtc > div > div:nth-child(2) > div > table > tbody > tr:nth-child(3) > td:nth-child(2)')
 
             all_data.append({
                 '상품명': product_name,
