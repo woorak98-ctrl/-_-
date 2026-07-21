@@ -1,0 +1,5 @@
+Plaintext
+selenium==4.17.2
+webdriver-manager==4.0.1
+pandas==2.2.0
+openpyxl==3.1.2
