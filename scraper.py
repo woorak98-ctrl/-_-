@@ -17,7 +17,8 @@ def setup_driver():
     options.add_argument('--window-size=1920,1080')
     
     # 일반 크롬과 다른 undetected_chromedriver 실행 방식
-    driver = uc.Chrome(options=options, headless=True) 
+# 일반 크롬과 다른 undetected_chromedriver 실행 방식
+    driver = uc.Chrome(options=options, headless=True, version_main=150) 
     driver.implicitly_wait(5)
     return driver
 
